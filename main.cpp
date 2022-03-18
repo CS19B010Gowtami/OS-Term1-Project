@@ -68,6 +68,50 @@ int main(int argc,char *argv[])
              writeFD[i][j]=open(path,O_WRONLY);
           }
       }
-     
+      //Display
+      for(int i=0;i<STUDENTS && inProgram==true;i++)
+      {
+          for(int j=0;j<EVALUATORS;j++)
+          {
+             sid=sidp+to_string(i);
+             pid=pidp+to_string(j);
+             path="./Admin/teachers/"+pid+"/"+sid+".txt";
+             if(writeFD[i][j]>-1)
+             {
+                cout<< "Enter "<<i+1<< " to Change marks of student- "<<sid<<endl;
+             }
+            cout<<"Enter 0 to Exit The Program"<<endl;
+            cout << endl;
+            // Show Options For editing  
+            int option;
+            cin>> option; 
+            cin.ignore();    
+            if(option>=1 && option<=STUDENTS && writeFD[i][j]>-1)
+            {
+                cout<<"Enter marks To Replace : ";
+                cin>>writeStream;  
+                cout<<writeStream<<endl;
+                lseek(writeFD[option-1][j],0,SEEK_SET);
+                write(writeFD[option-1][j],writeStream,sizeof(int));
+            }
+            else if(option==0)
+            {
+                inProgram = false;
+            }
+            else
+            {
+                cout<<"Please Enter A Valid Option"<<endl;
+            }
+            cout<<endl;
+          }
+      }
+      //close
+      for(int i=0;i<STUDENTS;i++)
+      {
+          for(int j=0;j<EVALUATORS;j++)
+          {
+             close(writeFD[i][j]);
+          }
+      }
    }
 }
