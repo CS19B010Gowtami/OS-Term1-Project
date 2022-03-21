@@ -3,8 +3,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <fcntl.h>
-#define STUDENTS 100
-#define EVALUATORS 100
+#define STUDENTS 3
+#define EVALUATORS 3
 using namespace std;
 
 int main(int argc,char *argv[])
@@ -18,7 +18,7 @@ int main(int argc,char *argv[])
    bool inProgram = true;
    string sid,pid;
    char* path;
-   string sidp="SID",pidp="PID";
+   string sidp="sid",pidp="pid";
    int total_files=STUDENTS*EVALUATORS;
   string students_info[STUDENTS],evaluators_info[EVALUATORS];
    char* work[STUDENTS];
@@ -37,7 +37,7 @@ int main(int argc,char *argv[])
       {
           for(int j=0;j<EVALUATORS;j++)
           {
-             string s="./Admin/teachers/"+evaluators_info[j]+"/"+students_info[i]+".txt";
+             string s="./admin/teachers/"+evaluators_info[j]+"/"+students_info[i]+".txt";
              readFD[i][j]=open(const_cast<char*>(s.c_str()),O_RDONLY);
           }
       }
@@ -45,6 +45,7 @@ int main(int argc,char *argv[])
       for(int i=0;i<STUDENTS;i++)
       {
         //   cout<<stu
+        cout << "Student " << i << endl;
           for(int j=0;j<EVALUATORS;j++)
           {
              if(readFD[i][j]>-1)
@@ -80,7 +81,7 @@ int main(int argc,char *argv[])
           {
              sid=sidp+to_string(i);
              pid=pidp+to_string(j);
-             string s="./Admin/teachers/"+pid+"/"+sid+".txt";
+             string s="./admin/teachers/"+pid+"/"+sid+".txt";
              writeFD[i][j]=open(const_cast<char*>(s.c_str()),O_WRONLY);
           }
       }
@@ -91,7 +92,7 @@ int main(int argc,char *argv[])
           {
              sid=sidp+to_string(i);
              pid=pidp+to_string(j);
-             string s="./Admin/teachers/"+pid+"/"+sid+".txt";
+             string s="./admin/teachers/"+pid+"/"+sid+".txt";
              if(writeFD[i][j]>-1)
              {
                 cout<< "Enter "<<i<< " to Change marks of student- "<<sid<<endl;
