@@ -20,7 +20,7 @@ int main(int argc,char *argv[])
    char* path;
    string sidp="SID",pidp="PID";
    int total_files=STUDENTS*EVALUATORS;
-   string student_info[STUDENTS],evaluators_info[EVALUATORS];
+  string students_info[STUDENTS],evaluators_info[EVALUATORS];
    char* work[STUDENTS];
    for(int i=0;i<STUDENTS;i++)
    {
@@ -37,8 +37,8 @@ int main(int argc,char *argv[])
       {
           for(int j=0;j<EVALUATORS;j++)
           {
-             path="./Admin/teachers/"+evaluators_info[j]+"/"+students_info[i]+".txt";
-             readFD[i][j]=open(path,O_RDONLY);
+             string s="./Admin/teachers/"+evaluators_info[j]+"/"+students_info[i]+".txt";
+             readFD[i][j]=open(const_cast<char*>(s.c_str()),O_RDONLY);
           }
       }
       //display
@@ -58,7 +58,8 @@ int main(int argc,char *argv[])
              }
              else
              {
-                 marksinfo[i][j]='_';
+                 string s = "_";
+                 marksinfo[i][j]=const_cast<char*>(s.c_str());
                  cout<<"_";
              }
           }
@@ -79,8 +80,8 @@ int main(int argc,char *argv[])
           {
              sid=sidp+to_string(i);
              pid=pidp+to_string(j);
-             path="./Admin/teachers/"+pid+"/"+sid+".txt";
-             writeFD[i][j]=open(path,O_WRONLY);
+             string s="./Admin/teachers/"+pid+"/"+sid+".txt";
+             writeFD[i][j]=open(const_cast<char*>(s.c_str()),O_WRONLY);
           }
       }
       //Display
@@ -90,7 +91,7 @@ int main(int argc,char *argv[])
           {
              sid=sidp+to_string(i);
              pid=pidp+to_string(j);
-             path="./Admin/teachers/"+pid+"/"+sid+".txt";
+             string s="./Admin/teachers/"+pid+"/"+sid+".txt";
              if(writeFD[i][j]>-1)
              {
                 cout<< "Enter "<<i<< " to Change marks of student- "<<sid<<endl;
