@@ -20,23 +20,31 @@ int main(int argc,char *argv[])
    char* path;
    string sidp="SID",pidp="PID";
    int total_files=STUDENTS*EVALUATORS;
-
-   while(inProgram)
+   string student_info[STUDENTS],evaluators_info[EVALUATORS];
+   char* work[STUDENTS];
+   for(int i=0;i<STUDENTS;i++)
+   {
+       students_info[i]=sidp+to_string(i);
+   }
+   for(int i=0;i<EVALUATORS;i++)
+   {
+       evaluators_info[i]=pidp+to_string(i);
+   }
+   while(inProgram)h
    {
       //read
       for(int i=0;i<STUDENTS;i++)
       {
           for(int j=0;j<EVALUATORS;j++)
           {
-             sid=sidp+to_string(i);
-             pid=pidp+to_string(j);
-             path="./Admin/teachers/"+pid+"/"+sid+".txt";
+             path="./Admin/teachers/"+evaluators_info[j]+"/"+students_info[i]+".txt";
              readFD[i][j]=open(path,O_RDONLY);
           }
       }
       //display
       for(int i=0;i<STUDENTS;i++)
       {
+          cout<<stu
           for(int j=0;j<EVALUATORS;j++)
           {
              if(readFD[i][j]>-1)
