@@ -44,7 +44,7 @@ int main(int argc,char *argv[])
       //display
       for(int i=0;i<STUDENTS;i++)
       {
-          cout<<stu
+        //   cout<<stu
           for(int j=0;j<EVALUATORS;j++)
           {
              if(readFD[i][j]>-1)
