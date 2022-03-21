@@ -30,7 +30,7 @@ int main(int argc,char *argv[])
    {
        evaluators_info[i]=pidp+to_string(i);
    }
-   while(inProgram)h
+   while(inProgram)
    {
       //read
       for(int i=0;i<STUDENTS;i++)
