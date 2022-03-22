@@ -33,20 +33,19 @@ int main(int argc,char *argv[])
    while(inProgram)
    {
       //read
-      for(int i=0;i<STUDENTS;i++)
+      for(int i=0;i<STUDENTS&&inProgram==true;i++)
       {
-          for(int j=0;j<EVALUATORS;j++)
+          for(int j=0;j<EVALUATORS&&inProgram==true;j++)
           {
-             string s="./admin/teachers/"+evaluators_info[j]+"/"+students_info[i]+".txt";
+             string s="../../root/admin/teachers/"+evaluators_info[j]+"/"+students_info[i]+".txt";
              readFD[i][j]=open(const_cast<char*>(s.c_str()),O_RDONLY);
           }
       }
       //display
-      for(int i=0;i<STUDENTS;i++)
+      for(int i=0;i<STUDENTS&&inProgram==true;i++)
       {
-        //   cout<<stu
         cout << "Student " << i << endl;
-          for(int j=0;j<EVALUATORS;j++)
+          for(int j=0;j<EVALUATORS&&inProgram==true;j++)
           {
              if(readFD[i][j]>-1)
              {
@@ -67,32 +66,32 @@ int main(int argc,char *argv[])
           cout<<"\n";
       }
       //close
-      for(int i=0;i<STUDENTS;i++)
+      for(int i=0;i<STUDENTS&&inProgram==true;i++)
       {
-          for(int j=0;j<EVALUATORS;j++)
+          for(int j=0;j<EVALUATORS&&inProgram==true;j++)
           {
              close(readFD[i][j]);
           }
       }
       //write
-      for(int i=0;i<STUDENTS;i++)
+      for(int i=0;i<STUDENTS&&inProgram==true;i++)
       {
-          for(int j=0;j<EVALUATORS;j++)
+          for(int j=0;j<EVALUATORS&&inProgram==true;j++)
           {
              sid=sidp+to_string(i);
              pid=pidp+to_string(j);
-             string s="./admin/teachers/"+pid+"/"+sid+".txt";
+             string s="../../root/admin/teachers/"+pid+"/"+sid+".txt";
              writeFD[i][j]=open(const_cast<char*>(s.c_str()),O_WRONLY);
           }
       }
       //Display
       for(int i=0;i<STUDENTS && inProgram==true;i++)
       {
-          for(int j=0;j<EVALUATORS;j++)
+          for(int j=0;j<EVALUATORS&&inProgram==true;j++)
           {
              sid=sidp+to_string(i);
              pid=pidp+to_string(j);
-             string s="./admin/teachers/"+pid+"/"+sid+".txt";
+             string s="../../root/admin/teachers/"+pid+"/"+sid+".txt";
              if(writeFD[i][j]>-1)
              {
                 cout<< "Enter "<<i<< " to Change marks of student- "<<sid<<endl;
