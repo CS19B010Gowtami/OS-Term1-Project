@@ -43,8 +43,8 @@ int main(int argc,char *argv[])
       }
       //display
       for(int i=0;i<STUDENTS&&inProgram==true;i++)
-      {
-        cout << "Student " << i << endl;
+      { 
+          cout << "Student " << i << endl;
           for(int j=0;j<EVALUATORS&&inProgram==true;j++)
           {
              if(readFD[i][j]>-1)
@@ -53,14 +53,14 @@ int main(int argc,char *argv[])
                if(bytes_read)
                {
                   marksinfo[i][j]=readStream;
-                  cout<<readStream<< "    ";
+                  cout<<"Evaluator-"<<j<<"   "<<readStream<< "              ";
                }
              }
              else
              {
                  string s = "_";
                  marksinfo[i][j]=const_cast<char*>(s.c_str());
-                 cout<<"_";
+                 cout<<s<< "              ";
              }
           }
           cout<<"\n";
