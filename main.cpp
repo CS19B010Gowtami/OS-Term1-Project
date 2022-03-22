@@ -53,14 +53,14 @@ int main(int argc, char *argv[])
                     if (bytes_read)
                     {
                         marksinfo[i][j] = readStream;
-                        cout << "Evaluator-" << j << "   " << readStream << "              ";
+                        cout << "Evaluator-" << j << "   " << readStream << ;
                     }
                 }
                 else
                 {
                     string s = "_";
                     marksinfo[i][j] = const_cast<char *>(s.c_str());
-                    cout << s << "              ";
+                    cout << s << ;
                 }
             }
             cout << "\n";
@@ -86,19 +86,19 @@ int main(int argc, char *argv[])
                 string s = "../../root/admin/teachers/" + pid + "/" + sid + ".txt";
                 if (writeFD[i][j] > -1)
                 {
-                    cout << "Enter " << i << " to Change marks of student for Evaluator" <<j<<"  or -1 to exit the program - " << sid << endl;
+                    cout << "Enter student roll no. to Change marks of that student Evaluator-" <<j<<"  or -1 to exit the program - " << sid << endl;
                 }
                 // Show Options For editing
                 int option;
                 cin >> option;
                 cin.ignore();
-                if (option <= STUDENTS && writeFD[i][j] > -1)
+                if (option!=-1 && option < STUDENTS && writeFD[i][j] > -1)
                 {
                     cout << "Enter marks To Replace : ";
                     cin >> writeStream;
                     marksinfo[i][j] = writeStream;
-                    lseek(writeFD[option - 1][j], 0, SEEK_SET);
-                    write(writeFD[option - 1][j], writeStream, sizeof(int));
+                    lseek(writeFD[option][j], 0, SEEK_SET);
+                    write(writeFD[option][j], writeStream, 3);
                 }
                 else if (option == -1)
                 {
@@ -132,14 +132,14 @@ int main(int argc, char *argv[])
                     if (bytes_read)
                     {
                         marksinfo[i][j] = readStream;
-                        cout << "Evaluator-" << j << "   " << readStream << "              ";
+                        cout << "Evaluator-" << j << "   " << readStream << ;
                     }
                 }
                 else
                 {
                     string s = "_";
                     marksinfo[i][j] = const_cast<char *>(s.c_str());
-                    cout << s << "              ";
+                    cout << s << ;
                 }
             }
             cout << "\n";
