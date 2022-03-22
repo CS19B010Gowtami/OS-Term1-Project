@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
             }
             cout << "\n";
         }
-        // write
+        //write
         for (int i = 0; i < STUDENTS && inProgram == true; i++)
         {
             for (int j = 0; j < EVALUATORS && inProgram == true; j++)
@@ -76,39 +76,42 @@ int main(int argc, char *argv[])
                 writeFD[i][j] = open(const_cast<char *>(s.c_str()), O_WRONLY);
             }
         }
-        // edit
+        //edit
+        bool access = false;
         for (int i = 0; i < STUDENTS && inProgram == true; i++)
         {
             for (int j = 0; j < EVALUATORS && inProgram == true; j++)
             {
-                sid = sidp + to_string(i);
-                pid = pidp + to_string(j);
-                string s = "../../root/admin/teachers/" + pid + "/" + sid + ".txt";
-                if (writeFD[i][j] > -1)
+                access=access || writeFD[i][j] ;
+            }
+        }
+        if(access && inProgram)
+        {
+            for (int i = 0; i < EVALUATORS && inProgram == true; i++)
+            {
+                if(writeFD[0][i]!=-1)
                 {
-                    cout << "Enter student roll no. to Change marks of that student for Evaluator-" <<j<<"  or -1 to exit the program - " << sid << endl;
+                    cout << "Enter roll no. to change marks of that student for evaluator-" <<i<<"  or -1 to exit the program "<< endl;
+                    int option;
+                    cin >> option;
+                    if(option>-1 && option < STUDENTS)
+                    {
+                        cout << "Enter marks To Replace : ";
+                        cin >> writeStream;
+                        marksinfo[option][i] = writeStream;
+                        lseek(writeFD[option][i] , 0 , SEEK_SET);
+                        write(writeFD[option][i] , writeStream , 3);
+                    }
+                    else if (option == -1)
+                    {
+                        inProgram = false;
+                    }
+                    else
+                    {
+                        cout << "Please Enter A Valid Option" << endl;
+                    }
+                    cout << endl;
                 }
-                // Show Options For editing
-                int option;
-                cin >> option;
-                cin.ignore();
-                if (option!=-1 && option < STUDENTS && writeFD[i][j] > -1)
-                {
-                    cout << "Enter marks To Replace : ";
-                    cin >> writeStream;
-                    marksinfo[i][j] = writeStream;
-                    lseek(writeFD[option][j], 0, SEEK_SET);
-                    write(writeFD[option][j], writeStream, 3);
-                }
-                else if (option == -1)
-                {
-                    inProgram = false;
-                }
-                else
-                {
-                    cout << "Please Enter A Valid Option" << endl;
-                }
-                cout << endl;
             }
         }
         // read
