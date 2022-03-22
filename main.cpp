@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
                 string s = "../../root/admin/teachers/" + pid + "/" + sid + ".txt";
                 if (writeFD[i][j] > -1)
                 {
-                    cout << "Enter student roll no. to Change marks of that student Evaluator-" <<j<<"  or -1 to exit the program - " << sid << endl;
+                    cout << "Enter student roll no. to Change marks of that student for Evaluator-" <<j<<"  or -1 to exit the program - " << sid << endl;
                 }
                 // Show Options For editing
                 int option;
