@@ -53,14 +53,14 @@ int main(int argc, char *argv[])
                     if (bytes_read)
                     {
                         marksinfo[i][j] = readStream;
-                        cout << "Evaluator-" << j << "   " << readStream << ;
+                        cout << "Evaluator-" << j << "   " << readStream  <<endl;
                     }
                 }
                 else
                 {
                     string s = "_";
                     marksinfo[i][j] = const_cast<char *>(s.c_str());
-                    cout << s << ;
+                    cout << s  ;
                 }
             }
             cout << "\n";
@@ -132,14 +132,14 @@ int main(int argc, char *argv[])
                     if (bytes_read)
                     {
                         marksinfo[i][j] = readStream;
-                        cout << "Evaluator-" << j << "   " << readStream << ;
+                        cout << "Evaluator-" << j << "   " << readStream <<endl;
                     }
                 }
                 else
                 {
                     string s = "_";
                     marksinfo[i][j] = const_cast<char *>(s.c_str());
-                    cout << s << ;
+                    cout << s ;
                 }
             }
             cout << "\n";
