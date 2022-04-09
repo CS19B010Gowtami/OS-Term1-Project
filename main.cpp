@@ -3,12 +3,26 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <dirent.h>
+#include <iostream>
+#include <libgen.h>
+#include <string.h>
 #define STUDENTS 3
 #define EVALUATORS 3
 using namespace std;
 
 int main(int argc, char *argv[])
 {
+    DIR *dir;
+    struct dirent *dp;
+    if((dir = opendir("../../root/admin/teachers/")) == NULL){
+        printf ("Cannot open .");
+        exit(1);  
+    }
+    while ((dp = readdir(dir)) != NULL) {
+        // printf("%i\n",(*dp).d_ino);
+        printf("%s\n",(*dp).d_name);
+    }
     int bytes_read = 0;
     char *readStream = new char[3];
     char *writeStream = new char[3];
