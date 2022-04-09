@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     while ((dp = readdir(dir)) != NULL) {
         // printf("%i\n",(*dp).d_ino);
         printf("%s\n",(*dp).d_name);
-        string temp = (*dp).d_name);
+        string temp = (*dp).d_name;
         string s1=".", s2="..";
         if(temp != s1&& temp != s2){
             evaluators_info[index] = temp;
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     while ((dp = readdir(dir)) != NULL) {
         // printf("%i\n",(*dp).d_ino);
         printf("%s\n",(*dp).d_name);
-        string temp = (*dp).d_name);
+        string temp = (*dp).d_name;
         string s1=".", s2="..";
         if(temp != s1&& temp != s2){
             students_info[index] = temp;
