@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
         string s1=".", s2="..";
         if(temp != s1&& temp != s2){
             evaluators_info[index] = temp;
-            printf("evaluators_info[%d] = %s\n",index,evaluators_info[index]);
+            // printf("evaluators_info[%d] = %s\n",index,evaluators_info[index]);
             index++;
         }
     }
@@ -76,21 +76,21 @@ int main(int argc, char *argv[])
         string s1=".", s2="..";
         if(temp != s1&& temp != s2){
             students_info[index] = temp;
-            printf("students_info[%d] = %s\n",index,students_info[index]);
+            // printf("students_info[%d] = %s\n",index,students_info[index]);
             index++;
         }
     }
 
-    for (int i = 0; i < no_of_stu; i++)
-    {
-        printf("%s",students_info[i]);
-        printf("\n");
-    }
-    for (int i = 0; i < no_of_tea; i++)
-    {
-        printf("%s",evaluators_info[i]);
-        printf("\n");
-    }
+    // for (int i = 0; i < no_of_stu; i++)
+    // {
+    //     printf("%s",students_info[i]);
+    //     printf("\n");
+    // }
+    // for (int i = 0; i < no_of_tea; i++)
+    // {
+    //     printf("%s",evaluators_info[i]);
+    //     printf("\n");
+    // }
     while (inProgram)
     {
         // read
@@ -99,8 +99,6 @@ int main(int argc, char *argv[])
             for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
-                printf(s);
-                printf("\n");
                 readFD[i][j] = open(const_cast<char *>(s.c_str()), O_RDONLY);
             }
         }
@@ -136,8 +134,6 @@ int main(int argc, char *argv[])
                 sid = sidp + to_string(i);
                 pid = pidp + to_string(j);
                 string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
-                printf(s);
-                printf("\n");
                 writeFD[i][j] = open(const_cast<char *>(s.c_str()), O_WRONLY);
             }
         }
@@ -185,8 +181,6 @@ int main(int argc, char *argv[])
             for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
-                printf(s);
-                printf("\n");
                 readFD[i][j] = open(const_cast<char *>(s.c_str()), O_RDONLY);
             }
         }
