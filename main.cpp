@@ -48,6 +48,31 @@ int main(int argc, char *argv[])
     int total_files = no_of_stu * no_of_tea;
     string students_info[no_of_stu], evaluators_info[no_of_tea];
     char *work[no_of_stu];
+    int index=0;
+    if((dir = opendir("../../root/admin/teachers/")) == NULL){
+        printf ("Cannot open ../../root/admin/teachers/");
+        exit(1);  
+    }
+    while ((dp = readdir(dir)) != NULL) {
+        // printf("%i\n",(*dp).d_ino);
+        // printf("filename :     %s\n",(*dp).d_name);
+        if((*dp).d_name != "."||(*dp).d_name != ".."){
+            teachers_info[index++] = (*dp).d_name;
+        }
+    }
+    index=0;
+    if((dir = opendir("../../root/admin/students/")) == NULL){
+        printf ("Cannot open ../../root/admin/students/");
+        exit(1);  
+    }
+    while ((dp = readdir(dir)) != NULL) {
+        // printf("%i\n",(*dp).d_ino);
+        // printf("filename :     %s\n",(*dp).d_name);
+        if((*dp).d_name != "."||(*dp).d_name != ".."){
+            students_info[index++] = (*dp).d_name;
+        }
+    }
+
     for (int i = 0; i < no_of_stu; i++)
     {
         students_info[i] = sidp + to_string(i);
