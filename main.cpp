@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
         // printf("%i\n",(*dp).d_ino);
         // printf("filename :     %s\n",(*dp).d_name);
         if((*dp).d_name != "."||(*dp).d_name != ".."){
-            teachers_info[index++] = (*dp).d_name;
+            evaluators_info[index++] = (*dp).d_name;
         }
     }
     index=0;
@@ -73,14 +73,14 @@ int main(int argc, char *argv[])
         }
     }
 
-    for (int i = 0; i < no_of_stu; i++)
-    {
-        students_info[i] = sidp + to_string(i);
-    }
-    for (int i = 0; i < no_of_tea; i++)
-    {
-        evaluators_info[i] = pidp + to_string(i);
-    }
+    // for (int i = 0; i < no_of_stu; i++)
+    // {
+    //     students_info[i] = sidp + to_string(i);
+    // }
+    // for (int i = 0; i < no_of_tea; i++)
+    // {
+    //     evaluators_info[i] = pidp + to_string(i);
+    // }
     while (inProgram)
     {
         // read
