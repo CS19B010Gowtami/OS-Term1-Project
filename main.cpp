@@ -55,12 +55,12 @@ int main(int argc, char *argv[])
     }
     while ((dp = readdir(dir)) != NULL) {
         // printf("%i\n",(*dp).d_ino);
-        printf("%s\n",(*dp).d_name);
+        // printf("%s\n",(*dp).d_name);
         string temp = (*dp).d_name;
         string s1=".", s2="..";
         if(temp != s1&& temp != s2){
             evaluators_info[index] = temp;
-            printf("evaluators_info[%d] = %s",index,evaluators_info[index]);
+            printf("evaluators_info[%d] = %s\n",index,evaluators_info[index]);
             index++;
         }
     }
@@ -71,24 +71,26 @@ int main(int argc, char *argv[])
     }
     while ((dp = readdir(dir)) != NULL) {
         // printf("%i\n",(*dp).d_ino);
-        printf("%s\n",(*dp).d_name);
+        // printf("%s\n",(*dp).d_name);
         string temp = (*dp).d_name;
         string s1=".", s2="..";
         if(temp != s1&& temp != s2){
             students_info[index] = temp;
-            printf("students_info[%d] = %s",index,students_info[index]);
+            printf("students_info[%d] = %s\n",index,students_info[index]);
             index++;
         }
     }
 
-    // for (int i = 0; i < no_of_stu; i++)
-    // {
-    //     students_info[i] = sidp + to_string(i);
-    // }
-    // for (int i = 0; i < no_of_tea; i++)
-    // {
-    //     evaluators_info[i] = pidp + to_string(i);
-    // }
+    for (int i = 0; i < no_of_stu; i++)
+    {
+        printf("%s",students_info[i]);
+        printf("\n");
+    }
+    for (int i = 0; i < no_of_tea; i++)
+    {
+        printf("%s",evaluators_info[i]);
+        printf("\n");
+    }
     while (inProgram)
     {
         // read
