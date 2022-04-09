@@ -13,16 +13,28 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    int no_of_stu=0, no_of_tea=0;
     DIR *dir;
     struct dirent *dp;
     if((dir = opendir("../../root/admin/teachers/")) == NULL){
-        printf ("Cannot open .");
+        printf ("Cannot open ../../root/admin/teachers/");
         exit(1);  
     }
     while ((dp = readdir(dir)) != NULL) {
         // printf("%i\n",(*dp).d_ino);
         printf("filename :     %s\n",(*dp).d_name);
+        no_of_tea++;
     }
+    if((dir = opendir("../../root/admin/students/")) == NULL){
+        printf ("Cannot open ../../root/admin/students/");
+        exit(1);  
+    }
+    while ((dp = readdir(dir)) != NULL) {
+        // printf("%i\n",(*dp).d_ino);
+        printf("filename :     %s\n",(*dp).d_name);
+        no_of_stu++;
+    }
+    printf("no.of teachers: %d\nno.of students: %d\n",no_of_tea,no_of_stu);
     int bytes_read = 0;
     char *readStream = new char[3];
     char *writeStream = new char[3];
