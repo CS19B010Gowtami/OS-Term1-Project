@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     }
     while ((dp = readdir(dir)) != NULL) {
         // printf("%i\n",(*dp).d_ino);
-        printf("%s\n",(*dp).d_name);
+        printf("filename :     %s\n",(*dp).d_name);
     }
     int bytes_read = 0;
     char *readStream = new char[3];
