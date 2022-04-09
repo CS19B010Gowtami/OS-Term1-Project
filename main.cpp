@@ -7,13 +7,13 @@
 #include <iostream>
 #include <libgen.h>
 #include <string.h>
-#define STUDENTS 3
-#define EVALUATORS 3
+// #define STUDENTS 3
+// #define EVALUATORS 3
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    int no_of_stu=0, no_of_tea=0;
+    int no_of_stu=-2, no_of_tea=-2;
     DIR *dir;
     struct dirent *dp;
     if((dir = opendir("../../root/admin/teachers/")) == NULL){
@@ -38,40 +38,40 @@ int main(int argc, char *argv[])
     int bytes_read = 0;
     char *readStream = new char[3];
     char *writeStream = new char[3];
-    int readFD[STUDENTS][EVALUATORS];
-    int writeFD[STUDENTS][EVALUATORS];
-    char *marksinfo[STUDENTS][EVALUATORS];
+    int readFD[no_of_stu][no_of_tea];
+    int writeFD[no_of_stu][no_of_tea];
+    char *marksinfo[no_of_stu][no_of_tea];
     bool inProgram = true;
     string sid, pid;
     char *path;
     string sidp = "sid", pidp = "pid";
-    int total_files = STUDENTS * EVALUATORS;
-    string students_info[STUDENTS], evaluators_info[EVALUATORS];
-    char *work[STUDENTS];
-    for (int i = 0; i < STUDENTS; i++)
+    int total_files = no_of_stu * no_of_tea;
+    string students_info[no_of_stu], evaluators_info[no_of_tea];
+    char *work[no_of_stu];
+    for (int i = 0; i < no_of_stu; i++)
     {
         students_info[i] = sidp + to_string(i);
     }
-    for (int i = 0; i < EVALUATORS; i++)
+    for (int i = 0; i < no_of_tea; i++)
     {
         evaluators_info[i] = pidp + to_string(i);
     }
     while (inProgram)
     {
         // read
-        for (int i = 0; i < STUDENTS && inProgram == true; i++)
+        for (int i = 0; i < no_of_stu && inProgram == true; i++)
         {
-            for (int j = 0; j < EVALUATORS && inProgram == true; j++)
+            for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
                 readFD[i][j] = open(const_cast<char *>(s.c_str()), O_RDONLY);
             }
         }
         // display
-        for (int i = 0; i < STUDENTS && inProgram == true; i++)
+        for (int i = 0; i < no_of_stu && inProgram == true; i++)
         {
             cout << "Student " << i << endl;
-            for (int j = 0; j < EVALUATORS && inProgram == true; j++)
+            for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 if (readFD[i][j] > -1)
                 {
@@ -92,9 +92,9 @@ int main(int argc, char *argv[])
             cout << "\n";
         }
         //write
-        for (int i = 0; i < STUDENTS && inProgram == true; i++)
+        for (int i = 0; i < no_of_stu && inProgram == true; i++)
         {
-            for (int j = 0; j < EVALUATORS && inProgram == true; j++)
+            for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 sid = sidp + to_string(i);
                 pid = pidp + to_string(j);
@@ -104,23 +104,23 @@ int main(int argc, char *argv[])
         }
         //edit
         bool access = false;
-        for (int i = 0; i < STUDENTS && inProgram == true; i++)
+        for (int i = 0; i < no_of_stu && inProgram == true; i++)
         {
-            for (int j = 0; j < EVALUATORS && inProgram == true; j++)
+            for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 access=access || writeFD[i][j] ;
             }
         }
         if(access && inProgram)
         {
-            for (int i = 0; i < EVALUATORS && inProgram == true; i++)
+            for (int i = 0; i < no_of_tea && inProgram == true; i++)
             {
                 if(writeFD[0][i]!=-1)
                 {
                     cout << "Enter roll no. to change marks of that student for evaluator-" <<i<<"  or -1 to exit the program "<< endl;
                     int option;
                     cin >> option;
-                    if(option>-1 && option < STUDENTS)
+                    if(option>-1 && option < no_of_stu)
                     {
                         cout << "Enter marks To Replace : ";
                         cin >> writeStream;
@@ -141,19 +141,19 @@ int main(int argc, char *argv[])
             }
         }
         // read
-        for (int i = 0; i < STUDENTS && inProgram == true; i++)
+        for (int i = 0; i < no_of_stu && inProgram == true; i++)
         {
-            for (int j = 0; j < EVALUATORS && inProgram == true; j++)
+            for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
                 readFD[i][j] = open(const_cast<char *>(s.c_str()), O_RDONLY);
             }
         }
         // display
-        for (int i = 0; i < STUDENTS && inProgram == true; i++)
+        for (int i = 0; i < no_of_stu && inProgram == true; i++)
         {
             cout << "Student " << i << endl;
-            for (int j = 0; j < EVALUATORS && inProgram == true; j++)
+            for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 if (readFD[i][j] > -1)
                 {
@@ -174,17 +174,17 @@ int main(int argc, char *argv[])
             cout << "\n";
         }
         // close
-        for (int i = 0; i < STUDENTS; i++)
+        for (int i = 0; i < no_of_stu; i++)
         {
-            for (int j = 0; j < EVALUATORS; j++)
+            for (int j = 0; j < no_of_tea; j++)
             {
                 close(readFD[i][j]);
             }
         }
         // close
-        for (int i = 0; i < STUDENTS; i++)
+        for (int i = 0; i < no_of_stu; i++)
         {
-            for (int j = 0; j < EVALUATORS; j++)
+            for (int j = 0; j < no_of_tea; j++)
             {
                 close(writeFD[i][j]);
             }
