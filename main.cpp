@@ -99,6 +99,8 @@ int main(int argc, char *argv[])
             for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
+                printf(s);
+                printf("\n");
                 readFD[i][j] = open(const_cast<char *>(s.c_str()), O_RDONLY);
             }
         }
@@ -133,7 +135,9 @@ int main(int argc, char *argv[])
             {
                 sid = sidp + to_string(i);
                 pid = pidp + to_string(j);
-                string s = "../../root/admin/teachers/" + pid + "/" + sid + ".txt";
+                string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
+                printf(s);
+                printf("\n");
                 writeFD[i][j] = open(const_cast<char *>(s.c_str()), O_WRONLY);
             }
         }
@@ -181,6 +185,8 @@ int main(int argc, char *argv[])
             for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
+                printf(s);
+                printf("\n");
                 readFD[i][j] = open(const_cast<char *>(s.c_str()), O_RDONLY);
             }
         }
