@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
         // display
         for (int i = 0; i < no_of_stu && inProgram == true; i++)
         {
-            cout << "Student " << i << endl;
+            cout << "Student " << students_info[i] << endl;
             for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 if (readFD[i][j] > -1)
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
                     if (bytes_read)
                     {
                         marksinfo[i][j] = readStream;
-                        cout << "Evaluator-" << j << "   " << readStream  <<endl;
+                        cout << "Evaluator-" << evaluators_info[j] << "   " << readStream  <<endl;
                     }
                 }
                 else
