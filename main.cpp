@@ -57,7 +57,9 @@ int main(int argc, char *argv[])
         // printf("%i\n",(*dp).d_ino);
         printf("%s\n",(*dp).d_name);
         if((*dp).d_name != "."&&(*dp).d_name != ".."){
-            evaluators_info[index++] = (*dp).d_name;
+            evaluators_info[index] = (*dp).d_name;
+            printf("evaluators_info[%d] = %s",index,evaluators_info[index]);
+            index++;
         }
     }
     index=0;
@@ -69,7 +71,9 @@ int main(int argc, char *argv[])
         // printf("%i\n",(*dp).d_ino);
         printf("%s\n",(*dp).d_name);
         if((*dp).d_name != "."&&(*dp).d_name != ".."){
-            students_info[index++] = (*dp).d_name;
+            students_info[index] = (*dp).d_name;
+            printf("students_info[%d] = %s",index,students_info[index]);
+            index++;
         }
     }
 
