@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     }
     while ((dp = readdir(dir)) != NULL) {
         // printf("%i\n",(*dp).d_ino);
-        printf("filename :     %s\n",(*dp).d_name);
+        // printf("filename :     %s\n",(*dp).d_name);
         no_of_tea++;
     }
     if((dir = opendir("../../root/admin/students/")) == NULL){
@@ -31,10 +31,10 @@ int main(int argc, char *argv[])
     }
     while ((dp = readdir(dir)) != NULL) {
         // printf("%i\n",(*dp).d_ino);
-        printf("filename :     %s\n",(*dp).d_name);
+        // printf("filename :     %s\n",(*dp).d_name);
         no_of_stu++;
     }
-    printf("no.of teachers: %d\nno.of students: %d\n",no_of_tea,no_of_stu);
+    // printf("no.of teachers: %d\nno.of students: %d\n",no_of_tea,no_of_stu);
     int bytes_read = 0;
     char *readStream = new char[3];
     char *writeStream = new char[3];
