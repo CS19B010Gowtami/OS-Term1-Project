@@ -9,5 +9,8 @@
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "files.autoGuessEncoding": true,
-    "C_Cpp.dimInactiveRegions": false
+    "C_Cpp.dimInactiveRegions": false,
+    "files.associations": {
+        "iostream": "cpp"
+    }
 }
