@@ -21,8 +21,6 @@ int main(int argc, char *argv[])
         exit(1);  
     }
     while ((dp = readdir(dir)) != NULL) {
-        // printf("%i\n",(*dp).d_ino);
-        // printf("filename :     %s\n",(*dp).d_name);
         no_of_tea++;
     }
     if((dir = opendir("../../root/admin/students/")) == NULL){
@@ -30,11 +28,9 @@ int main(int argc, char *argv[])
         exit(1);  
     }
     while ((dp = readdir(dir)) != NULL) {
-        // printf("%i\n",(*dp).d_ino);
-        // printf("filename :     %s\n",(*dp).d_name);
         no_of_stu++;
     }
-    // printf("no.of teachers: %d\nno.of students: %d\n",no_of_tea,no_of_stu);
+    printf("no.of teachers: %d\nno.of students: %d\n",no_of_tea,no_of_stu);
     int bytes_read = 0;
     char *readStream = new char[3];
     char *writeStream = new char[3];
@@ -54,8 +50,6 @@ int main(int argc, char *argv[])
         exit(1);  
     }
     while ((dp = readdir(dir)) != NULL) {
-        // printf("%i\n",(*dp).d_ino);
-        // printf("%s\n",(*dp).d_name);
         string temp = (*dp).d_name;
         string s1=".", s2="..";
         if(temp != s1&& temp != s2){
@@ -70,8 +64,6 @@ int main(int argc, char *argv[])
         exit(1);  
     }
     while ((dp = readdir(dir)) != NULL) {
-        // printf("%i\n",(*dp).d_ino);
-        // printf("%s\n",(*dp).d_name);
         string temp = (*dp).d_name;
         string s1=".", s2="..";
         if(temp != s1&& temp != s2){
@@ -80,17 +72,6 @@ int main(int argc, char *argv[])
             index++;
         }
     }
-
-    // for (int i = 0; i < no_of_stu; i++)
-    // {
-    //     printf("%s",students_info[i]);
-    //     printf("\n");
-    // }
-    // for (int i = 0; i < no_of_tea; i++)
-    // {
-    //     printf("%s",evaluators_info[i]);
-    //     printf("\n");
-    // }
     while (inProgram)
     {
         // read
@@ -187,7 +168,7 @@ int main(int argc, char *argv[])
         // display
         for (int i = 0; i < no_of_stu && inProgram == true; i++)
         {
-            cout << "Student " << i << endl;
+            cout << "Student " << students_info[i] << endl;
             for (int j = 0; j < no_of_tea && inProgram == true; j++)
             {
                 if (readFD[i][j] > -1)
@@ -196,14 +177,14 @@ int main(int argc, char *argv[])
                     if (bytes_read)
                     {
                         marksinfo[i][j] = readStream;
-                        cout << "Evaluator-" << j << "   " << readStream <<endl;
+                        cout << "Evaluator-" << evaluators_info[j] << "   " << readStream <<endl;
                     }
                 }
                 else
                 {
                     string s = "_";
                     marksinfo[i][j] = const_cast<char *>(s.c_str());
-                    cout << s ;
+                    cout << s <<endl ;
                 }
             }
             cout << "\n";
