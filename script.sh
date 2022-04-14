@@ -10,8 +10,8 @@ if getent passwd $1; then
 	done
 	echo student files created
 	cd "../.."
-	chmod o= "admin/students/$1"
-	chmod o= "admin/students/$1/work.txt"
+	chmod go= "admin/students/$1"
+	chmod go= "admin/students/$1/work.txt"
 	setfacl -m u:admin:rwx::allow "admin/students/$1"
 	setfacl -m g:students:-::allow "admin/students/$1"
 	setfacl -m g:teachers:x::allow "admin/students/$1"
@@ -28,7 +28,7 @@ if getent passwd $1; then
 		echo $path
 		echo path name $path
 		touch "$path/$1.txt"
-		chmod o= "$path/$1.txt"
+		chmod go= "$path/$1.txt"
 		setfacl -m u:$1:r::allow "$path/$1.txt"
 		setfacl -m u:$path:rw::allow "$path/$1.txt"
 		setfacl -m u:admin:rwx::allow "$path/$1.txt"
