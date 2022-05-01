@@ -100,6 +100,7 @@ int main(int argc, char *argv[])
             // }
         }
         // Followed By marks of all the students
+        cout<< "Are we reaching here?" << endl;
         for (int i = 0; i < STUDENTS && inProgram == true; i++)
         {
             cout << "Student " << i << endl;
