@@ -225,21 +225,6 @@ int main(int argc, char *argv[])
             }
         }
 
-        // Close First Set of FD's
-        for (int i = 0; i < STUDENTS; i++)
-        {
-            for (int j = 0; j < EVALUATORS; j++)
-            {
-                close(readFD[i][j]);
-                close(writeFD[i][j]);
-            }
-        }
-
-        for(int i=0; i< STUDENTS; i++){
-            close(readFD_forStudents[i]);
-            close(writeFD_forStudents[i]);
-        }
-
         // read FD
         for(int i=0; i < STUDENTS && inProgram == true; i++){
             string s = "../../root/admin/students/" + students_info[i] + "/" + "work.txt";
