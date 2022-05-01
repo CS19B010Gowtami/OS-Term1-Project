@@ -82,9 +82,9 @@ int main(int argc, char *argv[])
         {
             string wk = "";
             char *buff = new char[1];
-            cout << "Work Of Student " << i << endl;
             if (readFD_forStudents[i] > -1)
             {
+                cout << "Work Of Student " << i << endl;
                 while(bytes_read = read(readFD_forStudents[i], buff, sizeof(char))!=0){
                     // marksinfo[i][j] = readStream;
                     wk += buff;
@@ -92,34 +92,36 @@ int main(int argc, char *argv[])
                 }
                 cout<< wk << endl << endl;
             }
-            else
-            {
-                string s = "This Person has no work Yet";
-                marksinfo[i][j] = const_cast<char *>(s.c_str());
-                cout << s  ;
-            }
+            // else
+            // {
+            //     // string s = "This Person has no work Yet";
+            //     // marksinfo[i][j] = const_cast<char *>(s.c_str());
+            //     // cout << s  ;
+            // }
             cout << "\n";
         }
         // Followed By marks of all the students
         for (int i = 0; i < STUDENTS && inProgram == true; i++)
         {
-            cout << "Student " << i << endl;
-            for (int j = 0; j < EVALUATORS && inProgram == true; j++)
-            {
-                if (readFD[i][j] > -1)
+            if(readFD[i][0]!=-1){
+                cout << "Student " << i << endl;
+                for (int j = 0; j < EVALUATORS && inProgram == true; j++)
                 {
-                    bytes_read = read(readFD[i][j], readStream, sizeof(int));
-                    if (bytes_read)
+                    if (readFD[i][j] > -1)
                     {
-                        marksinfo[i][j] = readStream;
-                        cout << "Evaluator-" << j << "   " << readStream  <<endl;
+                        bytes_read = read(readFD[i][j], readStream, sizeof(int));
+                        if (bytes_read)
+                        {
+                            marksinfo[i][j] = readStream;
+                            cout << "Evaluator-" << j << "   " << readStream  <<endl;
+                        }
                     }
-                }
-                else
-                {
-                    string s = "_";
-                    marksinfo[i][j] = const_cast<char *>(s.c_str());
-                    cout << s  ;
+                    else
+                    {
+                        string s = "_";
+                        marksinfo[i][j] = const_cast<char *>(s.c_str());
+                        cout << s;
+                    }
                 }
             }
             cout << "\n";
