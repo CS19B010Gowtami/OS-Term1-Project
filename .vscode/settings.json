@@ -11,6 +11,7 @@
     "files.autoGuessEncoding": true,
     "C_Cpp.dimInactiveRegions": false,
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

@@ -267,7 +267,7 @@ int main(int argc, char *argv[])
                     wk += buff;
                     // cout << "Evaluator-" << j << "   " << readStream  <<endl;
                 }
-                cout<< wk << endl << endl;
+                cout<< wk << endl;
             }
             // else
             // {
@@ -275,7 +275,6 @@ int main(int argc, char *argv[])
             //     // marksinfo[i][j] = const_cast<char *>(s.c_str());
             //     // cout << s  ;
             // }
-            cout << "\n";
         }
         // Followed By marks of all the students
         for (int i = 0; i < STUDENTS && inProgram == true; i++)
@@ -300,8 +299,8 @@ int main(int argc, char *argv[])
                     //     cout << s;
                     // }
                 }
+                cout << "\n";
             }
-            cout << "\n";
         }
         // close
         for (int i = 0; i < STUDENTS; i++)
