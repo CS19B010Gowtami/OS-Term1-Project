@@ -173,7 +173,7 @@ int main(int argc, char *argv[])
                         // int option;
                         // cin >> option;
                         cout << "Enter Work for Student " << i << " Here : ";
-                        char *buff;
+                        char *buff = new char;
                         // Need To Get an input stream
                         cin >> buff;
                         // work[i] = buff
@@ -224,39 +224,21 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        // // read
-        // for (int i = 0; i < STUDENTS && inProgram == true; i++)
-        // {
-        //     for (int j = 0; j < EVALUATORS && inProgram == true; j++)
-        //     {
-        //         string s = "../../root/admin/teachers/" + evaluators_info[j] + "/" + students_info[i] + ".txt";
-        //         readFD[i][j] = open(const_cast<char *>(s.c_str()), O_RDONLY);
-        //     }
-        // }
-        // // display
-        // for (int i = 0; i < STUDENTS && inProgram == true; i++)
-        // {
-        //     cout << "Student " << i << endl;
-        //     for (int j = 0; j < EVALUATORS && inProgram == true; j++)
-        //     {
-        //         if (readFD[i][j] > -1)
-        //         {
-        //             bytes_read = read(readFD[i][j], readStream, sizeof(int));
-        //             if (bytes_read)
-        //             {
-        //                 marksinfo[i][j] = readStream;
-        //                 cout << "Evaluator-" << j << "   " << readStream <<endl;
-        //             }
-        //         }
-        //         else
-        //         {
-        //             string s = "_";
-        //             marksinfo[i][j] = const_cast<char *>(s.c_str());
-        //             cout << s ;
-        //         }
-        //     }
-        //     cout << "\n";
-        // }
+
+        // Close First Set of FD's
+        for (int i = 0; i < STUDENTS; i++)
+        {
+            for (int j = 0; j < EVALUATORS; j++)
+            {
+                close(readFD[i][j]);
+                close(writeFD[i][j]);
+            }
+        }
+
+        for(int i=0; i< STUDENTS; i++){
+            close(readFD_forStudents[i]);
+            close(writeFD_forStudents[i]);
+        }
 
         // read FD
         for(int i=0; i < STUDENTS && inProgram == true; i++){
@@ -289,9 +271,9 @@ int main(int argc, char *argv[])
             }
             // else
             // {
-            //     string s = "This Person has no work Yet";
-            //     marksinfo[i] = const_cast<char *>(s.c_str());
-            //     cout << s  ;
+            //     // string s = "This Person has no work Yet";
+            //     // marksinfo[i][j] = const_cast<char *>(s.c_str());
+            //     // cout << s  ;
             // }
             cout << "\n";
         }
@@ -300,23 +282,23 @@ int main(int argc, char *argv[])
         {
             if(readFD[i][0]!=-1){
                 cout << "Student " << i << endl;
-            }
-            for (int j = 0; j < EVALUATORS && inProgram == true; j++)
-            {
-                if (readFD[i][j] > -1)
+                for (int j = 0; j < EVALUATORS && inProgram == true; j++)
                 {
-                    bytes_read = read(readFD[i][j], readStream, sizeof(int));
-                    if (bytes_read)
+                    if (readFD[i][j] > -1)
                     {
-                        marksinfo[i][j] = readStream;
-                        cout << "Evaluator-" << j << "   " << readStream  <<endl;
+                        bytes_read = read(readFD[i][j], readStream, sizeof(int));
+                        if (bytes_read)
+                        {
+                            marksinfo[i][j] = readStream;
+                            cout << "Evaluator-" << j << "   " << readStream  <<endl;
+                        }
                     }
-                }
-                else
-                {
-                    string s = "_";
-                    marksinfo[i][j] = const_cast<char *>(s.c_str());
-                    cout << s  ;
+                    // else
+                    // {
+                    //     string s = "_";
+                    //     marksinfo[i][j] = const_cast<char *>(s.c_str());
+                    //     cout << s;
+                    // }
                 }
             }
             cout << "\n";
@@ -327,13 +309,13 @@ int main(int argc, char *argv[])
             for (int j = 0; j < EVALUATORS; j++)
             {
                 close(readFD[i][j]);
-                close(writeFD[i][j]);
+                // close(writeFD[i][j]);
             }
         }
 
         for(int i=0; i< STUDENTS; i++){
             close(readFD_forStudents[i]);
-            close(writeFD_forStudents[i]);
+            // close(writeFD_forStudents[i]);
         }
     }
 }
